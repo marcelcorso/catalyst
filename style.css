@@ -9,6 +9,30 @@ body {
   font: 16px/1.5 Lato;
 }
 
+#identify-ui {
+  height: 100%;
+  background-color: red;
+  width: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+  margin: auto;
+  display:flex;
+  flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#notification {
+  color: black;
+  background-color: red;
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+}
+
 #video-player {
   position: absolute;
   left: 0;

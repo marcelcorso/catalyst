@@ -13,4 +13,10 @@ sudo service tomcat6 stop # :P
 python -m SimpleHTTPServer 8080
 ```
 
+## Deploy to the py
+
+```
+scp * root@192.168.192.12:/boot/www/
+echo "/etc/init.d/S90wpe restart" | ssh root@192.168.192.12
+```
 
