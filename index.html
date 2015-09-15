@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Zapper Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="horizon.min.js#username=user&password=pw&pin=1234"></script>
+    <script src="zapper.js"></script>
+  </head>
+  <body>
+
+    <video id="video-player" autoplay></video>
+
+    <div id="status-bar">
+      <div class="progress">
+        <span></span>
+      </div>
+
+      <span class="now-playing">
+        <span class="title"></span>
+        <span class="time-slot"></span>
+      </span>
+
+      <span class="upcoming">
+        <span class="title"></span>
+        <span class="time-slot"></span>
+      </span>
+    </div>
+
+    <script>
+      Zapper.run();
+    </script>
+
+  </body>
+</html>
