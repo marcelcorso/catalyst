@@ -106,6 +106,7 @@ var Catalyst = (function () {
   function notifyViewingChange(metadata) {
     var user = new Firebase("https://catalysttv.firebaseio.com/users/" + userId);
     user.child("viewing").set(metadata);
+    user.child("viewing_channel").set(channelIndices[currentChannelIndex]);
   }
 
   function handleChannelUp() {
