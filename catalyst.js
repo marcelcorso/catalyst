@@ -32,13 +32,16 @@ var Catalyst = (function () {
 
           var user = new Firebase("https://catalysttv.firebaseio.com/users/" + userId);
           user.child("name").on("value", function(snapshot) {
-            localStorage.setItem('userName', snapshot.val());
-            run();
+            if(snapshot.val() != null) {
+              localStorage.setItem('userName', snapshot.val());
+              run();
+            }
           });
+
+          // no need anymore
+          code2userid.child(code).remove()
         }
    
-        // no need anymore
-        code2userid.child(code).remove()
       });
     }
   } 
@@ -48,7 +51,6 @@ var Catalyst = (function () {
     document.querySelector('#identify-ui').style.display = "none";
 
     document.querySelector('#username').innerHTML = localStorage.getItem('userName');
-    
     var user = new Firebase("https://catalysttv.firebaseio.com/users/" + localStorage.getItem('userId'));
     user.child("notification").on("value", function(snapshot) {
       console.debug("notification value: " + snapshot.val());
@@ -61,7 +63,6 @@ var Catalyst = (function () {
         }, 5000);
       }
     });
-
 
     api = new APIClient();
     videoPlayer = document.querySelector('#video-player');
