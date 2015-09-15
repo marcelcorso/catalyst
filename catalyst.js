@@ -17,10 +17,10 @@ var Catalyst = (function () {
       userId = localStorage.getItem("userId");
       document.querySelector('#identify-ui').style.display = "none";
 
-      // run();
+      run();
     } else {
       // identify the user
-      // document.querySelector('#tv-ui').style.display = "none";
+      document.querySelector('#tv-ui').style.display = "none";
 
       var code = Math.random().toString(36).slice(8);
       document.querySelector('#code').innerHTML = code;
@@ -33,11 +33,11 @@ var Catalyst = (function () {
           localStorage.setItem('userId', userId);
 
           var user = new Firebase("https://catalysttv.firebaseio.com/users/" + userId);
-          user.child("name").on("value", function(snapshot) {
+          user.child("avatar").on("value", function(snapshot) {
             if(snapshot.val() != null) {
-              localStorage.setItem('userName', snapshot.val());
+              localStorage.setItem('userAvatar', snapshot.val());
               document.querySelector('#identify-ui').style.display = "none";
-              // run();
+              run();
             }
           });
 
@@ -47,13 +47,13 @@ var Catalyst = (function () {
 
       });
     }
-    run();
   }
 
   function run() {
     document.querySelector('#tv-ui').style.display = "";
 
-    document.querySelector('#username').innerHTML = localStorage.getItem('userName');
+    document.querySelector('#userAvatar').style.backgroundImage = "url("+localStorage.getItem('userAvatar')+")";
+
     var user = new Firebase("https://catalysttv.firebaseio.com/users/" + localStorage.getItem('userId'));
     user.child("notification").on("value", function(snapshot) {
       console.debug("notification value: " + snapshot.val());
