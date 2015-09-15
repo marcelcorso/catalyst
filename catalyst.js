@@ -1,4 +1,4 @@
-var Zapper = (function () {
+var Catalyst = (function () {
 
   var api;
   var videoPlayer;
@@ -8,8 +8,47 @@ var Zapper = (function () {
   var currentChannelIndex = 0;
   var programEndTimer;
   var loading = false;
+  var userId = null;
+
+  function start() {
+
+    if (localStorage.getItem("userId") != null) {
+      userId = localStorage.getItem("userId");
+      run();
+    } else {
+      // identify the user
+      document.querySelector('#tv-ui').style.display = "none";
+   
+      var code = Math.random().toString(36).slice(10);
+      document.querySelector('#code').innerHTML = code;
+
+      // wait for a firebase response
+      var code2userid = new Firebase("https://catalysttv.firebaseio.com/code2userid/" + code);
+      code2userid.on("value", function(snapshot) {
+        console.debug("val: " + snapshot.val())
+        if(snapshot.val() != null) {
+          console.debug("val: " + snapshot.val())
+          userId = snapshot.val();
+          localStorage.setItem('userId', userId);
+
+          var user = new Firebase("https://catalysttv.firebaseio.com/users/" + userId);
+          user.child("name").on("value", function(snapshot) {
+            document.querySelector('#username').innerHTML = snapshot.val();
+
+            run();
+          });
+        }
+   
+        // no need anymore
+        code2userid.child(code).remove()
+      });
+    }
+  } 
 
   function run() {
+    document.querySelector('#tv-ui').style.display = "";
+    document.querySelector('#identify-ui').style.display = "none";
+
     api = new APIClient();
     videoPlayer = document.querySelector('#video-player');
     statusBar = new StatusBar(document.querySelector('#status-bar'));
@@ -338,7 +377,7 @@ var Zapper = (function () {
   };
 
   return {
-    run: run
+    start: start
   };
 
 }());

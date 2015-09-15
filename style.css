@@ -63,7 +63,7 @@ body {
 }
 
 #status-bar .now-playing::before {
-  content: 'Now:';
+  content: 'Catalyst:';
   float: left;
   margin-right: .5em;
   color: #777;

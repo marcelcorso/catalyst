@@ -2,35 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Zapper Example</title>
+    <title>Catalyst Example</title>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="horizon.min.js#username=user&password=pw&pin=1234"></script>
-    <script src="zapper.js"></script>
+    <script src="horizon.min.js#username=hackathon06&password=Hackathon06!&pin=0000"></script>
+    <script src="catalyst.js"></script>
   </head>
   <body>
 
-    <video id="video-player" autoplay></video>
-
-    <div id="status-bar">
-      <div class="progress">
-        <span></span>
-      </div>
-
-      <span class="now-playing">
-        <span class="title"></span>
-        <span class="time-slot"></span>
-      </span>
-
-      <span class="upcoming">
-        <span class="title"></span>
-        <span class="time-slot"></span>
-      </span>
+    <div id="identify-ui">
+      <span id="code"></code>
     </div>
 
-    <script>
-      Zapper.run();
-    </script>
+    <div id="tv-ui">
+      <video id="video-player" autoplay></video>
 
+      <div id="status-bar">
+        <div class="progress">
+          <span></span>
+        </div>
+
+        <span id="username">
+        </span>
+
+        <span class="now-playing">
+          <span class="title"></span>
+          <span class="time-slot"></span>
+        </span>
+
+        <span class="upcoming">
+          <span class="title"></span>
+          <span class="time-slot"></span>
+        </span>
+      </div>
+    </div>
+
+
+    <script>
+      Catalyst.start();
+    </script>
   </body>
 </html>
