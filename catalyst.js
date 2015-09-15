@@ -15,11 +15,13 @@ var Catalyst = (function () {
 
     if (localStorage.getItem("userId") != null) {
       userId = localStorage.getItem("userId");
-      run();
+      document.querySelector('#identify-ui').style.display = "none";
+
+      // run();
     } else {
       // identify the user
-      document.querySelector('#tv-ui').style.display = "none";
-   
+      // document.querySelector('#tv-ui').style.display = "none";
+
       var code = Math.random().toString(36).slice(8);
       document.querySelector('#code').innerHTML = code;
 
@@ -34,21 +36,22 @@ var Catalyst = (function () {
           user.child("name").on("value", function(snapshot) {
             if(snapshot.val() != null) {
               localStorage.setItem('userName', snapshot.val());
-              run();
+              document.querySelector('#identify-ui').style.display = "none";
+              // run();
             }
           });
 
           // no need anymore
           code2userid.child(code).remove()
         }
-   
+
       });
     }
-  } 
+    run();
+  }
 
   function run() {
     document.querySelector('#tv-ui').style.display = "";
-    document.querySelector('#identify-ui').style.display = "none";
 
     document.querySelector('#username').innerHTML = localStorage.getItem('userName');
     var user = new Firebase("https://catalysttv.firebaseio.com/users/" + localStorage.getItem('userId'));
