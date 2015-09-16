@@ -37,10 +37,10 @@ body {
 #userAvatar {
   border-radius: 50%;
   position: fixed;
-  bottom: 50px;
-  left: 50px;
   width: 48px;
-  z-index: 99999;
+  bottom: 45px;
+  left: 120px;
+  z-index: 999999;
   height: 48px;
   background-size: cover;
   background-position: center;
