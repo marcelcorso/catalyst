@@ -75,12 +75,15 @@ body {
 }
 #notification {
   color: black;
-  background-color: red;
+  background-color: black;
+  color: white;
   padding: 10px;
   border-radius: 5px;
   position: fixed;
   top: 50px;
   right: 50px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+
 }
 
 #video-player {
